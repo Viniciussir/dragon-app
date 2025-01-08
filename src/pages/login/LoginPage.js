@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import LoginForm from "../../components/login/LoginForm.js";
 import dragonImage from "../../assets/images/dragon.png";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = ({ onLoginSuccess }) => {
+  const navigate = useNavigate();
+
   const [error, setError] = useState("");
 
-  const handleLogin = (username, password) => {
-    if (username === "" || password === "") {
-      setError("Por favor, preencha todos os campos.");
-    } else {
-      setError("");
-      console.log("Login realizado:", username, password);
-    }
+  const handleLoginSuccess = () => {
+    onLoginSuccess();
+    navigate("/home");
   };
 
   return (
@@ -28,7 +27,11 @@ const LoginPage = () => {
               Criar Conta
             </button>
           </div>
-          <LoginForm onSubmit={handleLogin} />
+          <LoginForm
+            onLoginSuccess={handleLoginSuccess}
+            error={error}
+            setError={setError}
+          />
           {error && <p className="loginPage-error-message">{error}</p>}
         </div>
         <div className="loginPage-image">

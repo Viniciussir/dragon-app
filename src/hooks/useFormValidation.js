@@ -1,25 +1,56 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const useFormValidation = (initialValues, validate) => {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+const useFormValidation = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+  const validateForm = () => {
+    if (username === "" || password === "") {
+      setError("Por favor, preencha todos os campos.");
+      return false;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.some((user) => user.username === username)) {
+      setError("Usuário já registrado!");
+      return false;
+    }
+
+    return true;
   };
 
-  const handleValidate = () => {
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      const newUser = { username, password };
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      users.push(newUser);
+
+      localStorage.setItem("users", JSON.stringify(users));
+
+      setUsername("");
+      setPassword("");
+      setError("");
+
+      alert("Cadastro realizado com sucesso!");
+      navigate("/login");
+    }
   };
 
   return {
-    values,
-    errors,
-    handleChange,
-    handleValidate,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    error,
+    handleSubmit,
   };
 };
 

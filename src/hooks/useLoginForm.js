@@ -1,35 +1,44 @@
 import { useState } from "react";
-import { validateLoginFields } from "../utils/validation";
+import { useNavigate } from "react-router-dom";
 
-const useLoginForm = (onSubmit) => {
-  const [formState, setFormState] = useState({
-    username: "",
-    password: "",
-    error: "",
-  });
+const useLoginForm = (onLoginSuccess) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleChange = (field) => (e) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [field]: e.target.value,
-      error: "", // Limpa o erro ao começar a digitar
-    }));
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = formState;
-    const validationError = validateLoginFields(username, password);
 
-    if (validationError) {
-      setFormState((prevState) => ({ ...prevState, error: validationError }));
-    } else {
-      setFormState((prevState) => ({ ...prevState, error: "" }));
-      onSubmit(username, password);
+    if (username === "" || password === "") {
+      setError("Por favor, preencha todos os campos.");
+      return false;
     }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (!user) {
+      setError("Credenciais inválidas");
+      return;
+    }
+    setError("");
+    onLoginSuccess();
+    navigate("/home");
   };
 
-  return { formState, handleChange, handleSubmit };
+  return {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    error,
+    handleSubmit,
+  };
 };
 
 export default useLoginForm;

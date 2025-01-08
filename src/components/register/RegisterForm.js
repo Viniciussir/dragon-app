@@ -1,20 +1,10 @@
 import React from "react";
 import useFormValidation from "../../hooks/useFormValidation";
-import validationRules from "../../utils/validationRules";
 import "./RegisterForm.css";
 
-const RegisterForm = ({ onSubmit }) => {
-  const { values, errors, handleChange, handleValidate } = useFormValidation(
-    { username: "", password: "" },
-    validationRules
-  );
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (handleValidate()) {
-      onSubmit(values.username, values.password);
-    }
-  };
+const RegisterForm = () => {
+  const { username, setUsername, password, setPassword, error, handleSubmit } =
+    useFormValidation();
 
   return (
     <div className="register-container">
@@ -24,14 +14,9 @@ const RegisterForm = ({ onSubmit }) => {
           <input
             type="text"
             id="username"
-            name="username"
-            value={values.username}
-            onChange={handleChange}
-            placeholder="Digite seu nome de usuário"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
-          {errors.username && (
-            <span className="register-error-message">{errors.username}</span>
-          )}
         </div>
 
         <div className="input-container">
@@ -39,16 +24,11 @@ const RegisterForm = ({ onSubmit }) => {
           <input
             type="password"
             id="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            placeholder="Digite sua senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.password && (
-            <span className="register-error-message">{errors.password}</span>
-          )}
         </div>
-
+        {error && <span className="register-error-message">{error}</span>}
         <button type="submit" className="submit-btn">
           Criar Conta
         </button>

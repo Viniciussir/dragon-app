@@ -1,9 +1,16 @@
 import React from "react";
 import useLoginForm from "../../hooks/useLoginForm";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
-const LoginForm = ({ onSubmit }) => {
-  const { formState, handleChange, handleSubmit } = useLoginForm(onSubmit);
+const LoginForm = ({ onLoginSuccess }) => {
+  const navigate = useNavigate();
+
+  const { username, setUsername, password, setPassword, error, handleSubmit } =
+    useLoginForm(() => {
+      onLoginSuccess();
+      navigate("/home");
+    });
 
   return (
     <div className="login-container">
@@ -13,26 +20,20 @@ const LoginForm = ({ onSubmit }) => {
           <input
             type="text"
             id="username"
-            value={formState.username}
-            onChange={handleChange("username")}
-            placeholder="Digite seu nome de usuário"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-
         <div className="input-container">
           <label htmlFor="password">Senha</label>
           <input
             type="password"
             id="password"
-            value={formState.password}
-            onChange={handleChange("password")}
-            placeholder="Digite sua senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
-        {formState.error && (
-          <span className="error-message">{formState.error}</span>
-        )}
+        {error && <span className="register-error-message">{error}</span>}
 
         <button type="submit" className="submit-btn">
           Entrar
