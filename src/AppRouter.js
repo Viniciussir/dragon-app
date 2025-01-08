@@ -6,7 +6,7 @@ import HomePage from "./pages/home/HomePage";
 import PrivateRoute from "./components/PrivateRoute";
 import DragonsPage from "./pages/DragonsPage/DragonsPage";
 
-const AppRouter = ({ isAuthenticated, handleLoginSuccess }) => {
+const AppRouter = ({ isAuthenticated, handleLoginSuccess, handleLogout }) => {
   return (
     <Routes>
       <Route path="/register" element={<RegisterPage />} />
@@ -18,7 +18,7 @@ const AppRouter = ({ isAuthenticated, handleLoginSuccess }) => {
         path="/home"
         element={
           <PrivateRoute isAuthenticated={isAuthenticated}>
-            <HomePage />
+            <HomePage handleLogout={handleLogout} />
           </PrivateRoute>
         }
       />

@@ -9,11 +9,16 @@ const App = () => {
     setIsAuthenticated(true);
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
   return (
     <Router>
       <AppRouter
         isAuthenticated={isAuthenticated}
         handleLoginSuccess={handleLoginSuccess}
+        handleLogout={handleLogout}
       />
     </Router>
   );
