@@ -16,12 +16,22 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-box">
-        <div className="login-form">
+    <div className="loginPage-page">
+      <div className="loginPage-box">
+        <div className="loginPage-content">
+          <div className="loginPage-links">
+            <button className="loginPage-link active">Entrar</button>
+            <button
+              className="loginPage-link"
+              onClick={() => (window.location.href = "/register")}
+            >
+              Criar Conta
+            </button>
+          </div>
           <LoginForm onSubmit={handleLogin} />
+          {error && <p className="loginPage-error-message">{error}</p>}
         </div>
-        <div className="login-image">
+        <div className="loginPage-image">
           <img src={dragonImage} alt="Dragon" />
         </div>
       </div>

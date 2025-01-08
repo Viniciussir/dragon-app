@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./LoginForm.css";
+import "./RegisterForm.css";
 
-const LoginForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,8 +17,8 @@ const LoginForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="login-container">
-      <form className="login-content" onSubmit={handleSubmit}>
+    <div className="register-container">
+      <form className="register-content" onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="username">Nome de usuário</label>
           <input
@@ -44,11 +44,11 @@ const LoginForm = ({ onSubmit }) => {
         {error && <p className="error-message">{error}</p>}
 
         <button type="submit" className="submit-btn">
-          Entrar
+          Criar Conta
         </button>
       </form>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

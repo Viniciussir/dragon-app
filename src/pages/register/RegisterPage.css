@@ -1,4 +1,4 @@
-.loginPage-page {
+.registerPage-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
   }
 }
 
-.loginPage-box {
+.registerPage-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,22 +30,22 @@
   }
 }
 
-.loginPage-image,
-.loginPage-content {
+.registerPage-image,
+.registerPage-content {
   width: 50%;
   @media (max-width: 768px) {
     width: 100%;
   }
 }
 
-.loginPage-links {
+.registerPage-links {
   display: flex;
   justify-content: center;
   gap: 25px;
   margin-bottom: 30px;
 }
 
-.loginPage-link {
+.registerPage-link {
   background: none;
   border: none;
   font-size: 18px;
@@ -56,7 +56,7 @@
   position: relative;
 }
 
-.loginPage-link::after {
+.registerPage-link::after {
   content: "";
   display: block;
   width: 0;
@@ -66,20 +66,20 @@
   margin: auto;
 }
 
-.loginPage-link:hover::after,
-.loginPage-link.active::after {
+.registerPage-link:hover::after,
+.registerPage-link.active::after {
   width: 100%;
 }
 
-.loginPage-link:hover {
+.registerPage-link:hover {
   color: #ddd;
 }
 
-.loginPage-link:focus {
+.registerPage-link:focus {
   outline: none;
 }
 
-.loginPage-image {
+.registerPage-image {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -100,7 +100,7 @@
   }
 }
 
-.loginPage-error-message {
+.registerPage-error-message {
   color: red;
   font-size: 14px;
   margin-top: 20px;
