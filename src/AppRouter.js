@@ -4,6 +4,7 @@ import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
 import HomePage from "./pages/home/HomePage";
 import PrivateRoute from "./components/PrivateRoute";
+import DragonsPage from "./pages/DragonsPage/DragonsPage";
 
 const AppRouter = ({ isAuthenticated, handleLoginSuccess }) => {
   return (
@@ -18,6 +19,14 @@ const AppRouter = ({ isAuthenticated, handleLoginSuccess }) => {
         element={
           <PrivateRoute isAuthenticated={isAuthenticated}>
             <HomePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dragons"
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <DragonsPage />
           </PrivateRoute>
         }
       />
