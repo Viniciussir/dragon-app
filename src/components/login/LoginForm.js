@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import useLoginForm from "../../hooks/useLoginForm";
 import "./LoginForm.css";
 
 const LoginForm = ({ onSubmit }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username === "" || password === "") {
-      setError("Por favor, preencha todos os campos.");
-    } else {
-      setError("");
-      onSubmit(username, password);
-    }
-  };
+  const { formState, handleChange, handleSubmit } = useLoginForm(onSubmit);
 
   return (
     <div className="login-container">
@@ -24,8 +13,8 @@ const LoginForm = ({ onSubmit }) => {
           <input
             type="text"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={formState.username}
+            onChange={handleChange("username")}
             placeholder="Digite seu nome de usuário"
           />
         </div>
@@ -35,13 +24,15 @@ const LoginForm = ({ onSubmit }) => {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formState.password}
+            onChange={handleChange("password")}
             placeholder="Digite sua senha"
           />
         </div>
 
-        {error && <p className="error-message">{error}</p>}
+        {formState.error && (
+          <span className="error-message">{formState.error}</span>
+        )}
 
         <button type="submit" className="submit-btn">
           Entrar

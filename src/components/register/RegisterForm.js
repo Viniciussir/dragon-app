@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import useFormValidation from "../../hooks/useFormValidation";
+import validationRules from "../../utils/validationRules";
 import "./RegisterForm.css";
 
 const RegisterForm = ({ onSubmit }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const { values, errors, handleChange, handleValidate } = useFormValidation(
+    { username: "", password: "" },
+    validationRules
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === "" || password === "") {
-      setError("Por favor, preencha todos os campos.");
-    } else {
-      setError("");
-      onSubmit(username, password);
+    if (handleValidate()) {
+      onSubmit(values.username, values.password);
     }
   };
 
@@ -24,10 +24,14 @@ const RegisterForm = ({ onSubmit }) => {
           <input
             type="text"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            value={values.username}
+            onChange={handleChange}
             placeholder="Digite seu nome de usuário"
           />
+          {errors.username && (
+            <span className="register-error-message">{errors.username}</span>
+          )}
         </div>
 
         <div className="input-container">
@@ -35,13 +39,15 @@ const RegisterForm = ({ onSubmit }) => {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={values.password}
+            onChange={handleChange}
             placeholder="Digite sua senha"
           />
+          {errors.password && (
+            <span className="register-error-message">{errors.password}</span>
+          )}
         </div>
-
-        {error && <p className="error-message">{error}</p>}
 
         <button type="submit" className="submit-btn">
           Criar Conta

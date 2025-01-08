@@ -92,6 +92,7 @@
   img {
     object-fit: contain;
     max-width: 100%;
+    transform: scaleX(-1);
   }
 
   @media (max-width: 768px) {
