@@ -2,14 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #181a1e;
+  background: #f0f0f0;
 }
 
 .dragons-page-content {
   max-width: 800px;
   margin: 20px auto;
   padding: 40px;
-  border: 1px solid #ddd;
+  border: 3px solid #000000;
+  border-radius: 15px;
+  background: #1a6535;
 }
 
 h1 {

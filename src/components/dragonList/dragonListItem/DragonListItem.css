@@ -1,0 +1,61 @@
+.dragon-list-item {
+  background-color: #f0f0f0;
+  border-color: #a3a3a3;
+  color: #212429;
+  border-radius: 15px;
+  border-bottom: 8px solid;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.dragon-list-item__label {
+  font-weight: bold;
+}
+
+.dragon-list-item__button {
+  display: inline-block;
+  margin: 10px 5px 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dragon-list-item__button--edit {
+  background: #181a1e;
+  color: #f0f0f0;
+}
+
+.dragon-list-item__button--edit:hover {
+  background: #1a6535;
+  color: #f0f0f0;
+}
+
+.dragon-list-item__button--detail {
+  background: #1a6535;
+  color: #f0f0f0;
+}
+
+.dragon-list-item__button--detail:hover {
+  background: #181a1e;
+  color: #f0f0f0;
+}
+
+.dragon-list-item__delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #181a1e;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.dragon-list-item__delete-icon:hover {
+  color: #e53935;
+}

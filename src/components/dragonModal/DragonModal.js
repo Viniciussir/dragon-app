@@ -61,16 +61,22 @@ const DragonModal = ({
   };
 
   return (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-title">
+    <div className="dragon-modal__overlay" onClick={closeModal}>
+      <div
+        className="dragon-modal__content"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="dragon-modal__close-btn" onClick={closeModal}>
+          &times;
+        </button>
+        <h2 className="dragon-modal__title">
           {dragon ? "Detalhar Dragão" : "Adicionar Dragão"}
         </h2>
-        <form className="modal-form" onSubmit={handleSubmit}>
-          <label className="modal-label">
+        <form className="dragon-modal__form" onSubmit={handleSubmit}>
+          <label className="dragon-modal__label">
             Nome:
             <input
-              className="modal-input"
+              className="dragon-modal__input"
               type="text"
               name="name"
               value={formData.name}
@@ -79,10 +85,10 @@ const DragonModal = ({
               disabled={viewOnly}
             />
           </label>
-          <label className="modal-label">
+          <label className="dragon-modal__label">
             Tipo:
             <input
-              className="modal-input"
+              className="dragon-modal__input"
               type="text"
               name="type"
               value={formData.type}
@@ -91,10 +97,10 @@ const DragonModal = ({
               disabled={viewOnly}
             />
           </label>
-          <label className="modal-label">
+          <label className="dragon-modal__label">
             Data de Criação:
             <input
-              className="modal-input"
+              className="dragon-modal__input"
               type="date"
               name="createdAt"
               value={formData.createdAt}
@@ -103,28 +109,22 @@ const DragonModal = ({
               disabled={viewOnly}
             />
           </label>
-          <div className="button-container">
+          <div className="dragon-modal__button-container">
             {!viewOnly && (
-              <>
-                <button
-                  className="modal-button"
-                  type="submit"
-                  disabled={loading}
-                >
-                  {dragon ? "Salvar Alterações" : "Adicionar"}
-                </button>
-                <button
-                  className="modal-button"
-                  type="button"
-                  onClick={closeModal}
-                >
-                  Fechar
-                </button>
-              </>
+              <button
+                className="dragon-modal__button"
+                type="submit"
+                disabled={loading}
+              >
+                {dragon ? "Salvar" : "Adicionar"}
+              </button>
             )}
             {dragon && !viewOnly && (
-              <button className="modal-delete-button" onClick={handleDelete}>
-                Deletar
+              <button
+                className="dragon-modal__delete-button"
+                onClick={handleDelete}
+              >
+                Excluir
               </button>
             )}
           </div>

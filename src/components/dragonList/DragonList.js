@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useFetchDragons from "../../hooks/useFetchDragons";
 import DragonModal from "../dragonModal/DragonModal";
-import DragonListItem from "./DragonListItem";
+import DragonListItem from "./dragonListItem/DragonListItem";
 import "./DragonList.css";
 
 const DragonList = () => {
@@ -10,6 +11,8 @@ const DragonList = () => {
   const [editDragon, setEditDragon] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [viewOnly, setViewOnly] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDragons();
@@ -47,14 +50,30 @@ const DragonList = () => {
     }
   };
 
+  const sortedDragons = [...dragons].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div>
-      <button className="button-add-dragon" onClick={handleAddNewDragon}>
-        Adicionar Dragão
-      </button>
+      <div className="dragon-list__button-container">
+        <button
+          className="dragon-list__button dragon-list__button--add"
+          onClick={handleAddNewDragon}
+        >
+          Adicionar Dragão
+        </button>
+        <button
+          className="dragon-list__button dragon-list__button--back"
+          onClick={() => navigate("/home")}
+        >
+          Voltar
+        </button>
+      </div>
+
       {showModal && (
         <DragonModal
           dragon={editDragon}
@@ -67,7 +86,7 @@ const DragonList = () => {
         />
       )}
       <ul className="dragon-list">
-        {dragons.map((dragon) => (
+        {sortedDragons.map((dragon) => (
           <DragonListItem
             key={dragon.id}
             dragon={dragon}

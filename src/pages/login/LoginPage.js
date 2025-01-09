@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
-
   const [error, setError] = useState("");
 
   const handleLoginSuccess = () => {
@@ -15,13 +14,15 @@ const LoginPage = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="loginPage-page">
-      <div className="loginPage-box">
-        <div className="loginPage-content">
-          <div className="loginPage-links">
-            <button className="loginPage-link active">Entrar</button>
+    <div className="login-page">
+      <div className="login-page__box">
+        <div className="login-page__content">
+          <div className="login-page__links">
+            <button className="login-page__link login-page__link--active">
+              Entrar
+            </button>
             <button
-              className="loginPage-link"
+              className="login-page__link"
               onClick={() => (window.location.href = "/register")}
             >
               Criar Conta
@@ -32,9 +33,9 @@ const LoginPage = ({ onLoginSuccess }) => {
             error={error}
             setError={setError}
           />
-          {error && <p className="loginPage-error-message">{error}</p>}
+          {error && <p className="login-page__error-message">{error}</p>}
         </div>
-        <div className="loginPage-image">
+        <div className="login-page__image">
           <img src={dragonImage} alt="Dragon" />
         </div>
       </div>

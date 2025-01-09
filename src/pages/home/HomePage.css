@@ -3,13 +3,13 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: black;
+  background: #f0f0f0;
 }
 
 .homepage__container {
   text-align: center;
   padding: 20px;
-  background-color: #23252b;
+  background-color: #1a6535;
   border-radius: 8px;
   border: 1px solid #ddd;
   display: flex;
@@ -46,8 +46,8 @@
 
 .homepage__nav-link {
   font-size: 1.2em;
-  color: #fff;
-  background-color: #181a1e;
+  color: black;
+  background-color: #f0f0f0;
   padding: 15px 30px;
   border-radius: 50px;
   text-decoration: none;
@@ -59,8 +59,8 @@
 }
 
 .homepage__nav-link:hover {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: #f0f0f0;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
