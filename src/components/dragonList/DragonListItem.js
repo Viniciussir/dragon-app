@@ -1,6 +1,6 @@
 import React from "react";
 
-const DragonListItem = ({ dragon, handleEdit, handleDelete }) => {
+const DragonListItem = ({ dragon, handleEdit, handleDelete, handleDetail }) => {
   const normalizeDate = (date) => {
     const isoDate = new Date(date);
     const day = isoDate.getUTCDate().toString().padStart(2, "0");
@@ -16,6 +16,9 @@ const DragonListItem = ({ dragon, handleEdit, handleDelete }) => {
       <strong>Data de Criação:</strong> {normalizeDate(dragon.createdAt)} <br />
       <button className="button-edit" onClick={() => handleEdit(dragon)}>
         Editar
+      </button>
+      <button className="button-edit" onClick={() => handleDetail(dragon)}>
+        Detalhar
       </button>
       <button className="button-delete" onClick={() => handleDelete(dragon.id)}>
         Deletar

@@ -9,6 +9,7 @@ const DragonList = () => {
     useFetchDragons();
   const [editDragon, setEditDragon] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [viewOnly, setViewOnly] = useState(false);
 
   useEffect(() => {
     fetchDragons();
@@ -16,11 +17,19 @@ const DragonList = () => {
 
   const handleEdit = (dragon) => {
     setEditDragon(dragon);
+    setViewOnly(false);
+    setShowModal(true);
+  };
+
+  const handleDetail = (dragon) => {
+    setEditDragon(dragon);
+    setViewOnly(true);
     setShowModal(true);
   };
 
   const handleAddNewDragon = () => {
     setEditDragon(null);
+    setViewOnly(false);
     setShowModal(true);
   };
 
@@ -54,6 +63,7 @@ const DragonList = () => {
           }}
           saveDragon={saveDragon}
           deleteDragon={deleteDragon}
+          viewOnly={viewOnly}
         />
       )}
       <ul className="dragon-list">
@@ -62,6 +72,7 @@ const DragonList = () => {
             key={dragon.id}
             dragon={dragon}
             handleEdit={handleEdit}
+            handleDetail={handleDetail}
             handleDelete={handleDelete}
           />
         ))}

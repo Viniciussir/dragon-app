@@ -7,6 +7,7 @@ const DragonModal = ({
   loading,
   saveDragon,
   deleteDragon,
+  viewOnly,
 }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -63,7 +64,7 @@ const DragonModal = ({
     <div className="modal-overlay" onClick={closeModal}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal-title">
-          {dragon ? "Editar Dragão" : "Adicionar Dragão"}
+          {dragon ? "Detalhar Dragão" : "Adicionar Dragão"}
         </h2>
         <form className="modal-form" onSubmit={handleSubmit}>
           <label className="modal-label">
@@ -75,6 +76,7 @@ const DragonModal = ({
               value={formData.name}
               onChange={handleChange}
               required
+              disabled={viewOnly}
             />
           </label>
           <label className="modal-label">
@@ -86,6 +88,7 @@ const DragonModal = ({
               value={formData.type}
               onChange={handleChange}
               required
+              disabled={viewOnly}
             />
           </label>
           <label className="modal-label">
@@ -97,16 +100,29 @@ const DragonModal = ({
               value={formData.createdAt}
               onChange={handleChange}
               required
+              disabled={viewOnly}
             />
           </label>
           <div className="button-container">
-            <button className="modal-button" type="submit" disabled={loading}>
-              {dragon ? "Salvar Alterações" : "Adicionar"}
-            </button>
-            <button className="modal-button" type="button" onClick={closeModal}>
-              Fechar
-            </button>
-            {dragon && (
+            {!viewOnly && (
+              <>
+                <button
+                  className="modal-button"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {dragon ? "Salvar Alterações" : "Adicionar"}
+                </button>
+                <button
+                  className="modal-button"
+                  type="button"
+                  onClick={closeModal}
+                >
+                  Fechar
+                </button>
+              </>
+            )}
+            {dragon && !viewOnly && (
               <button className="modal-delete-button" onClick={handleDelete}>
                 Deletar
               </button>
