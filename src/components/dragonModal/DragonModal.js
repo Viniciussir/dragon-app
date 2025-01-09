@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DragonModal.css";
+import ConfirmDialog from "../confirmationDialog/ConfirmationDialog";
 
 const DragonModal = ({
   dragon,
@@ -14,6 +15,7 @@ const DragonModal = ({
     type: "",
     createdAt: "",
   });
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   useEffect(() => {
     if (dragon) {
@@ -44,20 +46,25 @@ const DragonModal = ({
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmDelete = async () => {
     if (dragon) {
-      const confirmed = window.confirm(
-        "Tem certeza que deseja excluir este dragão?"
-      );
-      if (confirmed) {
-        const success = await deleteDragon(dragon.id);
-        if (success) {
-          closeModal();
-        } else {
-          alert("Erro ao excluir o dragão");
-        }
+      const success = await deleteDragon(dragon.id);
+      if (success) {
+        closeModal();
+      } else {
+        alert("Erro ao excluir o dragão");
       }
     }
+    setShowConfirmDialog(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmDialog(false);
   };
 
   return (
@@ -70,7 +77,11 @@ const DragonModal = ({
           &times;
         </button>
         <h2 className="dragon-modal__title">
-          {dragon ? "Detalhar Dragão" : "Adicionar Dragão"}
+          {dragon && viewOnly
+            ? "Detalhar Dragão"
+            : dragon && !viewOnly
+            ? "Alterar Dragão"
+            : "Adicionar Dragão"}
         </h2>
         <form className="dragon-modal__form" onSubmit={handleSubmit}>
           <label className="dragon-modal__label">
@@ -129,6 +140,13 @@ const DragonModal = ({
             )}
           </div>
         </form>
+        {showConfirmDialog && (
+          <ConfirmDialog
+            message="Tem certeza que deseja excluir este dragão?"
+            onConfirm={handleConfirmDelete}
+            onCancel={handleCancelDelete}
+          />
+        )}
       </div>
     </div>
   );

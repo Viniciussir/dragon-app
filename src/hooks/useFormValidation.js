@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const useFormValidation = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const validateForm = () => {
     if (username === "" || password === "") {
@@ -39,9 +37,9 @@ const useFormValidation = () => {
       setPassword("");
       setError("");
 
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login");
+      return true;
     }
+    return false;
   };
 
   return {

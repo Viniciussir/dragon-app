@@ -37,16 +37,11 @@ const DragonList = () => {
   };
 
   const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Tem certeza que deseja deletar este dragão?"
-    );
-    if (confirmed) {
-      const success = await deleteDragon(id);
-      if (success) {
-        fetchDragons();
-      } else {
-        alert("Erro ao deletar o dragão");
-      }
+    const success = await deleteDragon(id);
+    if (success) {
+      fetchDragons();
+    } else {
+      alert("Erro ao deletar o dragão");
     }
   };
 

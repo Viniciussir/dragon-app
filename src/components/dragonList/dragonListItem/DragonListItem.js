@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import ConfirmationDialog from "../../confirmationDialog/ConfirmationDialog";
 import "./DragonListItem.css";
 
 const DragonListItem = ({ dragon, handleEdit, handleDelete, handleDetail }) => {
+  const [showDialog, setShowDialog] = useState(false);
+
   const normalizeDate = (date) => {
     const isoDate = new Date(date);
     const day = isoDate.getUTCDate().toString().padStart(2, "0");
     const month = (isoDate.getUTCMonth() + 1).toString().padStart(2, "0");
     const year = isoDate.getUTCFullYear();
     return `${day}/${month}/${year}`;
+  };
+
+  const confirmDelete = () => {
+    handleDelete(dragon.id);
+    setShowDialog(false);
   };
 
   return (
@@ -32,10 +40,17 @@ const DragonListItem = ({ dragon, handleEdit, handleDelete, handleDetail }) => {
       </button>
       <button
         className="dragon-list-item__delete-icon"
-        onClick={() => handleDelete(dragon.id)}
+        onClick={() => setShowDialog(true)}
       >
         &times;
       </button>
+      {showDialog && (
+        <ConfirmationDialog
+          message={`Tem certeza que deseja remover o dragão ${dragon.name} ?`}
+          onConfirm={confirmDelete}
+          onCancel={() => setShowDialog(false)}
+        />
+      )}
     </li>
   );
 };
