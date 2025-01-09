@@ -12,10 +12,10 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: #23252b;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ddd;
   max-width: 400px;
   width: 90%;
   text-align: center;
@@ -23,34 +23,25 @@
   position: relative;
 }
 
-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #28a745;
+.modal-title {
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
-button:hover {
-  background-color: #218838;
+.modal-form {
+  display: flex;
+  flex-direction: column;
 }
 
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-label {
-  display: block;
+.modal-label {
   margin-bottom: 10px;
   font-size: 14px;
   text-align: left;
+  color: white;
 }
 
-input {
+.modal-input {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -60,7 +51,48 @@ input {
   box-sizing: border-box;
 }
 
-p {
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+.modal-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.modal-delete-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.modal-error {
   margin-top: 15px;
   color: red;
   font-size: 14px;

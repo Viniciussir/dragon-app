@@ -34,6 +34,11 @@ const useFetchDragons = () => {
     setLoading(true);
     setError(null);
 
+    const formattedDragonData = {
+      ...dragonData,
+      createdAt: new Date(dragonData.createdAt).toISOString(),
+    };
+
     const url = dragonId
       ? `http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${dragonId}`
       : "http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon";
@@ -42,7 +47,7 @@ const useFetchDragons = () => {
     try {
       const response = await fetch(url, {
         method,
-        body: JSON.stringify(dragonData),
+        body: JSON.stringify(formattedDragonData),
         headers: { "Content-Type": "application/json" },
       });
 

@@ -16,10 +16,13 @@ const DragonModal = ({
 
   useEffect(() => {
     if (dragon) {
+      const formattedDate = dragon.createdAt
+        ? new Date(dragon.createdAt).toISOString().split("T")[0]
+        : "";
       setFormData({
         name: dragon.name,
         type: dragon.type,
-        createdAt: dragon.createdAt,
+        createdAt: formattedDate,
       });
     }
   }, [dragon]);
@@ -59,11 +62,14 @@ const DragonModal = ({
   return (
     <div className="modal-overlay" onClick={closeModal}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>{dragon ? "Editar Dragão" : "Adicionar Dragão"}</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
+        <h2 className="modal-title">
+          {dragon ? "Editar Dragão" : "Adicionar Dragão"}
+        </h2>
+        <form className="modal-form" onSubmit={handleSubmit}>
+          <label className="modal-label">
             Nome:
             <input
+              className="modal-input"
               type="text"
               name="name"
               value={formData.name}
@@ -71,9 +77,10 @@ const DragonModal = ({
               required
             />
           </label>
-          <label>
+          <label className="modal-label">
             Tipo:
             <input
+              className="modal-input"
               type="text"
               name="type"
               value={formData.type}
@@ -81,9 +88,10 @@ const DragonModal = ({
               required
             />
           </label>
-          <label>
+          <label className="modal-label">
             Data de Criação:
             <input
+              className="modal-input"
               type="date"
               name="createdAt"
               value={formData.createdAt}
@@ -91,12 +99,20 @@ const DragonModal = ({
               required
             />
           </label>
-          <button type="submit" disabled={loading}>
-            {dragon ? "Salvar Alterações" : "Adicionar"}
-          </button>
+          <div className="button-container">
+            <button className="modal-button" type="submit" disabled={loading}>
+              {dragon ? "Salvar Alterações" : "Adicionar"}
+            </button>
+            <button className="modal-button" type="button" onClick={closeModal}>
+              Fechar
+            </button>
+            {dragon && (
+              <button className="modal-delete-button" onClick={handleDelete}>
+                Deletar
+              </button>
+            )}
+          </div>
         </form>
-        {dragon && <button onClick={handleDelete}>Deletar</button>}
-        <button onClick={closeModal}>Fechar</button>
       </div>
     </div>
   );
