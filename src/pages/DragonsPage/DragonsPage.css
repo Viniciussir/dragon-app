@@ -1,0 +1,19 @@
+.dragons-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #181a1e;
+}
+
+.dragons-page-content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 40px;
+  border: 1px solid #ddd;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: white;
+}

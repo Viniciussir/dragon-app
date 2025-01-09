@@ -1,11 +1,14 @@
 import React from "react";
 import DragonList from "../../components/dragonList/DragonList";
+import "./DragonsPage.css";
 
 const DragonsPage = () => {
   return (
-    <div>
-      <h1>Lista de Dragões</h1>
-      <DragonList />
+    <div className="dragons-page-container">
+      <div className="dragons-page-content">
+        <h1>Lista de Dragões</h1>
+        <DragonList />
+      </div>
     </div>
   );
 };

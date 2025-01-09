@@ -3,14 +3,15 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: black;
 }
 
 .homepage__container {
   text-align: center;
   padding: 20px;
-  background-color: #fff;
+  background-color: #23252b;
   border-radius: 8px;
-  box-shadow: 0 4px 8px #23252b;
+  border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,8 +21,9 @@
 
 .homepage__title {
   font-size: 2.5em;
-  color: #333;
-  margin-bottom: 20px;
+  font-weight: 400;
+  color: white;
+  margin: 0 15px;
 }
 
 .homepage__nav-list {
@@ -29,6 +31,8 @@
   justify-content: center;
   gap: 20px;
   list-style-type: none;
+  padding: 0px;
+  margin: 20px;
   @media (max-width: 550px) {
     flex-direction: column;
   }
@@ -43,7 +47,7 @@
 .homepage__nav-link {
   font-size: 1.2em;
   color: #fff;
-  background-color: #003366;
+  background-color: #181a1e;
   padding: 15px 30px;
   border-radius: 50px;
   text-decoration: none;
@@ -55,7 +59,8 @@
 }
 
 .homepage__nav-link:hover {
-  background-color: #00509e;
+  background-color: white;
+  color: black;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }

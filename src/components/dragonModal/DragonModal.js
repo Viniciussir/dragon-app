@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import useFetchDragons from "../../hooks/useFetchDragons";
 import "./DragonModal.css";
 
-const DragonModal = ({ dragon, closeModal }) => {
-  const { saveDragon, deleteDragon, loading, error } = useFetchDragons();
+const DragonModal = ({
+  dragon,
+  closeModal,
+  loading,
+  saveDragon,
+  deleteDragon,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -38,11 +42,16 @@ const DragonModal = ({ dragon, closeModal }) => {
 
   const handleDelete = async () => {
     if (dragon) {
-      const success = await deleteDragon(dragon.id);
-      if (success) {
-        closeModal();
-      } else {
-        alert("Erro ao excluir o dragão");
+      const confirmed = window.confirm(
+        "Tem certeza que deseja excluir este dragão?"
+      );
+      if (confirmed) {
+        const success = await deleteDragon(dragon.id);
+        if (success) {
+          closeModal();
+        } else {
+          alert("Erro ao excluir o dragão");
+        }
       }
     }
   };
@@ -86,12 +95,7 @@ const DragonModal = ({ dragon, closeModal }) => {
             {dragon ? "Salvar Alterações" : "Adicionar"}
           </button>
         </form>
-        {dragon && (
-          <button onClick={handleDelete} disabled={loading}>
-            Deletar
-          </button>
-        )}
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {dragon && <button onClick={handleDelete}>Deletar</button>}
         <button onClick={closeModal}>Fechar</button>
       </div>
     </div>

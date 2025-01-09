@@ -1,0 +1,86 @@
+.dragon-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+  .dragon-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .dragon-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.button-add-dragon {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-add-dragon:hover {
+  background-color: white;
+  color: black;
+}
+
+.dragon-list-item {
+  background-color: black;
+  border-color: #a3a3a3;
+  color: white;
+  border-radius: 8px;
+  border-bottom: 4px solid;
+  border-radius: 8px;
+  padding: 15px;
+  transition: box-shadow 0.3s;
+  text-align: center;
+}
+
+.dragon-list-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-edit,
+.button-delete {
+  display: inline-block;
+  margin: 10px 5px 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-edit {
+  background: #181a1e;
+  color: white;
+}
+
+.button-edit:hover {
+  background: white;
+  color: #181a1e;
+}
+
+.button-delete {
+  background: linear-gradient(90deg, #e53935, #f4511e);
+  color: #fff;
+}
+
+.button-delete:hover {
+  background: linear-gradient(90deg, #f4511e, #e53935);
+}
